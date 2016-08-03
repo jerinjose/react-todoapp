@@ -1,0 +1,29 @@
+
+.linethrough {
+    text-decoration: line-through;
+}
+
+.todo-button {
+	text-align: left;
+}
+
+.form-control{
+	width: 90% !important;
+	margin: 0 auto !important;
+}
+
+.todo-input{
+	float: right;
+}
+
+.hide-bullet{
+	list-style: none;
+}
+
+.todo-list {
+	margin: 50px auto;
+}
+
+.todo-row {
+	text-align: left;
+}
