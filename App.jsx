@@ -1,19 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 
 class MyReact extends React.Component {
 	render() {
 		return (
-			<Todo />
+			<div>
+				<Todo />
+				{this.props.children}
+			</div>	
 		);
 	}
 }
 
 
-
 var Todo = React.createClass({
-	 getInitialState: function() {
+	getInitialState: function() {
         return {item: {
            name: ''
         }}
@@ -84,7 +84,10 @@ var TextInput = React.createClass({
 			          		onChange={this.handleChange}/>	
 	        		</div>
 	        	</div>
-  				<div className="col-sm-6" className="todo-button"><button type="button" className="btn btn-primary" onClick={this.addTodo}>Add Todo</button>
+  				<div className="col-sm-6" className="todo-button">
+	  				<button type="button" className="btn btn-primary" onClick={this.addTodo}>
+	  					Add Todo
+	  				</button>
   				</div>
 			</div>
 			
@@ -153,5 +156,4 @@ var TodoList = React.createClass({
 
 });
 
-
-ReactDOM.render(<MyReact/>, document.getElementById('app'));
+export default MyReact;
