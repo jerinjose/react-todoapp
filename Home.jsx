@@ -25,6 +25,12 @@ var Users = React.createClass({
 		}
 	},
 
+	updateUserList : function(userArray){
+		this.setState({
+           users : userArray
+        });
+	},
+
 	setUserData : function(userArray){
 		this.setState({
 			users : userArray
@@ -35,7 +41,7 @@ var Users = React.createClass({
       return (
          <div>
         	<InputForm getUserData = {this.setUserData}/>
-        	<UserList userlist = {this.state.users}/>
+        	<UserList userlist = {this.state.users} updateUserList={this.updateUserList}/>
          </div>
       )
    }
@@ -176,6 +182,15 @@ var InputForm = React.createClass({
 });
 
 var UserList = React.createClass({
+	remove : function(val,e){
+  		var userList = this.props.userlist;
+  		for(var i=0;i < userList.length;i++){
+  			if(val == this.props.userlist[i].id){
+  				userList.splice(i, 1);
+  			}
+  		}
+  		this.props.updateUserList(userList);
+  	},
 	render : function(){
 		var UserList = (this.props.userlist) ? this.props.userlist : [];
 		return(
@@ -196,6 +211,7 @@ var UserList = React.createClass({
 				      		<td>{user.id}</td>
 					        <td>{user.name}</td>
 					        <td>{user.email}</td>
+					        <td><button className="btn btn-danger" onClick={this.remove.bind(this,user.id)}>Remove</button></td>
 				      	</tr>)
 		            }, this)}  	
 			    </tbody>
