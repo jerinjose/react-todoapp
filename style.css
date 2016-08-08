@@ -27,3 +27,13 @@
 .todo-row {
 	text-align: left;
 }
+
+.user-list {
+	margin-top: 50px;
+    font-size: 18px;
+}
+
+.errorMsg {
+	text-align: center;
+	color: red;
+}

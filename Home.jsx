@@ -94,13 +94,12 @@ var TextInput = React.createClass({
 		return(
 			<div>
 				<input
-					className="form-control todo-input"
+					className="form-control"
 	    			type={this.props.type}
 					placeholder={this.props.placeholder}
 	          		value={this.state.value}
 	          		onChange={this.validate.bind(this,this.props.name)} />	
-
-	          	<h3>{this.state.msg}</h3>
+	          	<span className="errorMsg"><p>{this.state.msg}</p></span>
 	        </div>  		
 		)
 	}
@@ -125,10 +124,8 @@ var InputForm = React.createClass({
 	addUser : function(){
 		var userTempArray = (this.state.usersArray) ? this.state.usersArray : [];
 		var count  = this.state.count;
-		userTempArray.push({id:count+1 ,name: this.state.userEmail,email : this.state.userName});
+		userTempArray.push({id:count+1 ,email: this.state.userEmail,name : this.state.userName});
 		this.setState({
-			userName : '',
-			userEmail : '',
 			usersArray : userTempArray,
 			count : count+1
 		});
@@ -167,7 +164,7 @@ var InputForm = React.createClass({
 							<TextInput type="email" placeholder="Email" required={true} name="email" setUserEmail = {this.setUserEmail}/>
 			        	</div>
 			        </div>
-	  				<div className="col-sm-4" className="todo-button">
+	  				<div className="col-sm-4">
 		  				<button type="button" className="btn btn-primary" onClick={this.addUser}>
 		  					Add User
 		  				</button>
@@ -182,15 +179,29 @@ var UserList = React.createClass({
 	render : function(){
 		var UserList = (this.props.userlist) ? this.props.userlist : [];
 		return(
-			<div>
-		      	<ul className="hide-bullet">
-		      		{ UserList.map(function(user) {
-		                return(
-		                	<li key={user.id}>{user.name}</li>
-		                	)
-		              }, this)}
-		      	</ul>
-		    </div>  	
+		    <div className="container user-list">
+			  	<h2>Users</h2>
+			  	<table className="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+			    <tbody>
+			    	{ UserList.map(function(user) {
+			    		return(
+				      	<tr key={user.id}>
+				      		<td>{user.id}</td>
+					        <td>{user.name}</td>
+					        <td>{user.email}</td>
+				      	</tr>)
+		            }, this)}  	
+			    </tbody>
+			  </table>
+			</div>
+	
 		)
 	}
 });
